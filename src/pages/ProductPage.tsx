@@ -42,28 +42,24 @@ export default function ProductPage() {
     <MessageBox variant="danger">Product Not Found</MessageBox>
   ) : (
     <div>
-      <Row>
+      <Row className="justify-content-center p-5">
         <Col md={6}>
           <img className="large" src={product.image} alt={product.title}></img>
-        </Col>
-        <Col md={3}>
-          <ListGroup variant="flush">
-            <ListGroup.Item>
+        </Col>       
+        
+        <Col lg={6} className="pt-4">
 
-                <h1>{product.title}</h1>
+                    <h1>$ {product.title}</h1>
+                    <p>
+                    {product.category}
+                        
+                    </p>
+                    <p className="product__price">{product.price}</p>
+                    <p style={{ textAlign: "justify" }} className="py-3">
+                        <strong>Описание:</strong> {product.description}
+                    </p>
+                    </Col>
 
-              <h1>{product.title}</h1>
-            </ListGroup.Item>
-            <ListGroup.Item>
-
-            </ListGroup.Item>
-            <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
-            <ListGroup.Item>
-              Description:
-              <p>{product.description}</p>
-            </ListGroup.Item>
-          </ListGroup>
-        </Col>
         <Col md={3}>
           <Card>
             <Card.Body>
@@ -78,7 +74,7 @@ export default function ProductPage() {
 
                 </ListGroup.Item>
 
-                      <Button onClick={addToCartHandler} variant="dark">
+                      <Button className="category-button"  onClick={addToCartHandler} >
                         Добавить в корзину
                       </Button>
               </ListGroup>

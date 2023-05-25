@@ -66,7 +66,17 @@ function App() {
   return ( 
     <div className="App">
     <div className="d-flex flex-column vh-100">
-      <ToastContainer position="bottom-center" limit={1} />
+      <ToastContainer position="top-center"
+autoClose={2000}
+hideProgressBar={true}
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="dark"
+limit={1} />
       <header>
               <div className="Announcement">Бессплатная доставка при заказе на сумму выше 5000руб!</div>
         <Navbar

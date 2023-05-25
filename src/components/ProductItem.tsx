@@ -25,7 +25,7 @@ function ProductItem({ product }: { product: Product }) {
       type: 'CART_ADD_ITEM',
       payload: { ...item, quantity },
     })
-    toast.success('Товар добавлен в корзину')
+    toast.success('Добавлен')
   }
   
   const addToFavoriteHandler = (item: FavoriteItem) => {
