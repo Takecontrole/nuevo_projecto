@@ -5,10 +5,10 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import MessageBox from '../components/MessageBox'
-import { Store } from '../Store'
+import { Store } from '../utils/Store'
 import { FavoriteItem } from '../types/Favorite'
-import FavoriteList from '../components/FavoriteList'
-export default function FavoritePage() {
+import SelectedList from '../components/Selected'
+export default function Selected() {
   const navigate = useNavigate()
   const [searchValue, setSearchValue] = useState(""); 
   
@@ -24,7 +24,7 @@ export default function FavoritePage() {
   const submitHandler = (e: React.SyntheticEvent) => {
     setSearchValue(e.target.value);
   }
-  const itemsFilter = favoriteItems?.filter((item) =>
+  const filterd = favoriteItems?.filter((item) =>
     item.title.toLowerCase().includes(searchValue.toLowerCase()) 
   ); 
 
@@ -46,7 +46,7 @@ export default function FavoritePage() {
             <LinkContainer to="/" className="header-link">
               <div>Домашняя</div>
             </LinkContainer>
-            <LinkContainer to="/favorite" className="header-link">
+            <LinkContainer to="/selected" className="header-link">
               <div>Избранные</div>
             </LinkContainer> 
             {/*
@@ -79,7 +79,7 @@ export default function FavoritePage() {
           </div>
         </Navbar>
       </header>
-               <FavoriteList itemsFilter={itemsFilter}/>
+               <SelectedList filterd={filterd}/>
      
 
       </div>

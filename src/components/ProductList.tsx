@@ -1,9 +1,9 @@
 // @ts-nocheck
 import { useEffect, useState } from "react";
-import ProductItem from "./ProductItem"
+import SingleProduct from "./Product"
 import {Row, Col} from "react-bootstrap"
 
-const ProductList = ({ itemsFilter }) => {
+const ProductList = ({ filterd }) => {
   const [filters, setFilters] = useState({});
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [ price, setPrice ] = useState(0);
@@ -20,13 +20,13 @@ const handleFilters = (e: React.SyntheticEvent) => {
   };
     useEffect(() => {
       setFilteredProducts(
-        itemsFilter.filter((item) =>
+        filterd.filter((item) =>
           Object.entries(filters).every(([key, value]) =>
             item[key].includes(value)
           )
         )
       );
-  }, [itemsFilter, filters]);
+  }, [filterd, filters]);
   useEffect(() => {
     if (sort === "asc") {
       setFilteredProducts((prev) =>
@@ -70,7 +70,7 @@ const handleFilters = (e: React.SyntheticEvent) => {
        <div style={{display:"flex",flexWrap: "wrap", justifyContent:"center"}}  >
       { filteredProducts.map( product => {
         return <div style={{width:"300px", margin:"2rem"}} key={product.title}> <div  key={product.id} >
-          <ProductItem product={product} />
+          <SingleProduct product={product} />
         </div> </div>
       })}        
       </div>

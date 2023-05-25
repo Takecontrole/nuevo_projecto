@@ -1,27 +1,27 @@
 // @ts-nocheck
 import React, { useEffect, useState } from "react";
-import LoadingBox from '../components/LoadingBox'
-import MessageBox from '../components/MessageBox'
-import ProductList from '../components/ProductList'
-import { useGetProductsQuery } from '../hooks/productHooks'
-import { ApiError } from '../types/ApiError'
-import { getError } from '../utils'
 import {
+  Alert,
   Button,
   ButtonGroup
 } from "react-bootstrap";
-export default function HomePage({searchValue}) { 
+import LoadingBox from '../components/LoadingBox'
+import ProductList from '../components/ProductList'
+import { getProducts } from '../hooks/productHooks'
+import { ApiError } from '../types/ApiError'
+import { getError } from '../utils/utils'
+export default function Home({value}) { 
   const [category, setCategory] = useState(""); 
-  const { data: products, isLoading, error } = useGetProductsQuery(category!)
+  const { data: products, isLoading, error } = getProducts(category!)
 
-  const itemsFilter = products?.filter((item) =>
-    item.title.toLowerCase().includes(searchValue.toLowerCase()) 
+  const filterd = products?.filter((item) =>
+    item.title.toLowerCase().includes(value.toLowerCase()) 
   ); 
  
   return isLoading ? (
     <LoadingBox />
   ) : error ? (
-    <MessageBox variant="danger">{getError(error as ApiError)}</MessageBox>
+    <Alert variant="denger">{getError(error as ApiError)}</Alert>
   ) : (
     <div>
     <div className="d-flex flex-wrap align-items-center justify-content-around"> 
@@ -32,7 +32,7 @@ export default function HomePage({searchValue}) {
         <Button className="category-button"  value="category/jewelery" onClick={(e) => setCategory(e.target.value)}>Ювелирные украшения</Button>
    
      </div>        
-               <ProductList itemsFilter={itemsFilter}/>
+               <ProductList filterd={filterd}/>
      
 
     </div>

@@ -1,30 +1,21 @@
 // @ts-nocheck
 import { useContext, useEffect, useState } from 'react'
 import {
-  Badge,
   Button,
   Container,
-  Form,
-  FormControl,
-  InputGroup,
-  ListGroup,
   Nav,
   Navbar,
-  NavDropdown,
 } from 'react-bootstrap'
-import { Link, Outlet } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { Store } from './Store'
-import { useGetCategoriesQuery } from './hooks/productHooks'
-import { useGetProductsQuery } from './hooks/productHooks'
+import { Store } from './utils/Store'
 import Carousel from './components/Carousel'
 import LoadingBox from './components/LoadingBox'
-import MessageBox from './components/MessageBox'
-import { getError } from './utils'
+import { getError } from './utils/utils'
 import { ApiError } from './types/ApiError'
-import HomePage from './pages/HomePage'
+import Home from './pages/Home'
 import ProductList from './components/ProductList'
 
 function App() {
@@ -33,36 +24,12 @@ function App() {
     dispatch,
   } = useContext(Store) 
    const [category, setCategory] = useState(""); 
-   const [searchValue, setSearchValue] = useState(""); 
+   const [value, setValue] = useState(""); 
  
-  const submitHandler = (e: React.SyntheticEvent) => {
-    setSearchValue(e.target.value);
-  }
-// const [active, setActive] = useState(true);
-/*
-  useEffect(() => {
-    document.body.setAttribute('data-bs-theme', mode)
-  }, [mode])
-  const switchModeHandler = () => {
-    dispatch({ type: 'SWITCH_MODE' })
-  }
-  const signoutHandler = () => {
-    dispatch({ type: 'USER_SIGNOUT' })
-    localStorage.removeItem('userInfo')
-    localStorage.removeItem('cartItems')
-    localStorage.removeItem('shippingAddress')
-    localStorage.removeItem('paymentMethod')
-    window.location.href = '/signin'
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    setValue(e.target.value);
   }
 
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false)
-  const { data: products, isLoading, error } = useGetProductsQuery()
-
-  const itemsFilter = products?.filter((item) =>
-    item.title.toLowerCase().includes(searchValue.toLowerCase()) 
-  ); 
-*/
-  
   return ( 
     <div className="App">
     <div className="d-flex flex-column vh-100">
@@ -93,7 +60,7 @@ limit={1} />
             <LinkContainer to="/" className="header-link">
               <div>Домашняя</div>
             </LinkContainer>
-            <LinkContainer to="/favorite" className="header-link">
+            <LinkContainer to="/selected" className="header-link">
               <div>Избранные</div>
             </LinkContainer> 
             {/*
@@ -104,8 +71,8 @@ limit={1} />
         type="text"
         placeholder="Найти..."
         style={{width:"100%", backgroundColor:"transparent", border:"none", outline:"none"}}
-        value={searchValue}
-        onChange={submitHandler}
+        value={value}
+        onChange={handleSubmit}
       /> 
       
       </div>
@@ -116,13 +83,7 @@ limit={1} />
                       {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
                     </span>
                   }
-                                      
-                                   
-
-
-                </Link>
-             
-                
+            </Link>
           </div>
         </Navbar>
       </header>
@@ -130,27 +91,9 @@ limit={1} />
             <main className="mt-5">
              <Carousel/> 
         <Container className="mt-5">
-                <HomePage searchValue={searchValue}  />
+                <Home value={value}  />
         </Container>
       </main>
-        {/*
-               <ProductList itemsFilter={itemsFilter}/>
-
-      <div className="d-flex justify-content-between m-5"> 
-      <Link style={{textDecoration:"none",marginRight:"1rem"}} to="/" className="hover-underline-animation">
-                <h1>Каталог</h1>
-      </Link>
-     
-                
-      <Link style={{textDecoration:"none", marginLeft:"1rem"}}  to="/favorite" className="hover-underline-animation">
-          <h1>Избранное</h1>
-      </Link>
-     </div>
-
-      <footer>
-      
-      </footer>
-      */}
     </div>
    </div>
   )

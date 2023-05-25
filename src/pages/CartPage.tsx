@@ -4,7 +4,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import MessageBox from '../components/MessageBox'
-import { Store } from '../Store'
+import { Store } from '../utils/Store'
 import { CartItem } from '../types/Cart'
 
 export default function CartPage() {

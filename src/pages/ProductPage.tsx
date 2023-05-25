@@ -4,10 +4,10 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import LoadingBox from '../components/LoadingBox'
 import MessageBox from '../components/MessageBox'
-import { useGetProductDetailsBySlugQuery } from '../hooks/productHooks'
-import { Store } from '../Store'
+import { getProduct } from '../hooks/productHooks'
+import { Store } from '../utils/Store'
 import { ApiError } from '../types/ApiError'
-import { convertProductToCartItem, getError } from '../utils'
+import { convertProductToCartItem, getError } from '../utils/utils'
 
 export default function ProductPage() {
   const params = useParams()
@@ -16,7 +16,7 @@ export default function ProductPage() {
     data: product,
     isLoading,
     error,
-  } = useGetProductDetailsBySlugQuery(id!)
+  } = getProduct(id!)
 
   const { state, dispatch } = useContext(Store)
   const { cart } = state
@@ -31,15 +31,15 @@ export default function ProductPage() {
       type: 'CART_ADD_ITEM',
       payload: { ...convertProductToCartItem(product!), quantity },
     })
-    toast.success('Товар добавлен в корзину')
+    toast.success('Добавлено в корзину')
     navigate('/cart')
   }
   return isLoading ? (
     <LoadingBox />
   ) : error ? (
-    <MessageBox variant="danger">{getError(error as ApiError)}</MessageBox>
+    <Alert variant="denger">{getError(error as ApiError)}</Alert>
   ) : !product ? (
-    <MessageBox variant="danger">Product Not Found</MessageBox>
+      <Alert variant="denger">Product Not Found</Alert>
   ) : (
     <div>
       <Row className="justify-content-center p-5">

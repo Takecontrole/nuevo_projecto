@@ -1,17 +1,17 @@
 // @ts-nocheck
 import { useEffect, useState } from "react";
-import FavoriteCard from "./FavoriteItem"
+import SelectedItem from "./SelectedItem"
 
-const FavoriteList = ({ itemsFilter }) => {
+const SelectedList = ({ filterd }) => {
   
 
   return (
     <div>
       <h1>Избранное</h1>
  <div style={{display:"flex",flexWrap: "wrap", justifyContent:"center"}}  >
-      { itemsFilter.map( product => {
+      { filterd.map( product => {
         return <div style={{width:"300px", margin:"2rem"}}  key={product.title}> <div key={product.id} >
-          <FavoriteCard product={product} />
+          <SelectedItem product={product} />
         </div> </div>
       })}        
     </div>
@@ -19,4 +19,4 @@ const FavoriteList = ({ itemsFilter }) => {
   );
 };
 
-export default FavoriteList;
+export default SelectedList;

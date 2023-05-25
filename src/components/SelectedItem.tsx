@@ -3,14 +3,14 @@ import { useContext } from 'react'
 import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { Store } from '../Store'
+import { Store } from '../utils/Store'
 import { CartItem } from '../types/Cart'
 import { FavoriteItem } from '../types/Favorite'
 import { Product } from '../types/Product'
-import { convertProductToCartItem } from '../utils'
-import { convertProductToFavoriteItem } from '../utils'
+import { convertProductToCartItem } from '../utils/utils'
+import { convertProductToFavoriteItem } from '../utils/utils'
 
-function FavoriteCard({ product }: { product: Product }) {
+function SelectedItem({ product }: { product: Product }) {
   const { state, dispatch } = useContext(Store)
   const {
     cart: { cartItems },
@@ -68,5 +68,5 @@ function FavoriteCard({ product }: { product: Product }) {
   )
 }
 
-export default FavoriteCard
+export default SelectedItem
 
