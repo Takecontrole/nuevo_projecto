@@ -1,7 +1,7 @@
-import { ApiError } from './types/ApiError'
-import { CartItem } from './types/Cart'
-import { FavoriteItem } from './types/Favorite'
-import { Product } from './types/Product'
+import { ApiError } from '../types/ApiError'
+import { CartItem } from '../types/Cart'
+import { FavoriteItem } from '../types/Favorite'
+import { Product } from '../types/Product'
 
 export const getError = (error: ApiError) => {
   return error.response && error.response.data.message

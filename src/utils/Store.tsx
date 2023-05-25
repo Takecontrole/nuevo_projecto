@@ -1,6 +1,6 @@
 import React from 'react'
-import { Cart, CartItem } from './types/Cart'
-import {Favorite, FavoriteItem } from './types/Favorite'
+import { Cart, CartItem } from '../types/Cart'
+import {Favorite, FavoriteItem } from '../types/Favorite'
 
 
 type AppState = {

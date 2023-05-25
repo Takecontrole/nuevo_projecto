@@ -1,9 +1,8 @@
 import { useContext } from 'react'
-import { Badge, Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
+import { Alert, Badge, Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import LoadingBox from '../components/LoadingBox'
-import MessageBox from '../components/MessageBox'
 import { getProduct } from '../hooks/productHooks'
 import { Store } from '../utils/Store'
 import { ApiError } from '../types/ApiError'
@@ -24,6 +23,7 @@ export default function ProductPage() {
   const navigate = useNavigate()
 
   const addToCartHandler = () => {
+    // @ts-ignore
     const existItem = cart.cartItems.find((x) => x.id === product!.id)
     const quantity = existItem ? existItem.quantity + 1 : 1
 

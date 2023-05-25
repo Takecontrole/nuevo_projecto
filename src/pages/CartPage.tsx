@@ -3,7 +3,6 @@ import { Alert, Container, Table, Button, Card, Col, ListGroup, Row } from 'reac
 import { LinkContainer } from 'react-router-bootstrap'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import MessageBox from '../components/MessageBox'
 import { Store } from '../utils/Store'
 import { CartItem } from '../types/Cart'
 
@@ -100,8 +99,12 @@ export default function CartPage() {
               <ListGroup variant="flush">
                 <ListGroup.Item>
                   <h3>
+                  {// @ts-ignore 
+                  }
                     Subtotal ({cartItems.reduce((a, c) => a + c.quantity, 0)}{' '}
                     items) : $
+                    {// @ts-ignore
+                    }
                     {cartItems.reduce((a, c) => a + c.price * c.quantity, 0)}
                   </h3>
                 </ListGroup.Item>
