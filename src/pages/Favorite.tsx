@@ -1,6 +1,7 @@
 // @ts-nocheck
 import React, { useEffect, useState, useContext } from "react";
-import { Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
+import { Nav, Navbar, Button, Card, Col, ListGroup, Row } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import MessageBox from '../components/MessageBox'
@@ -10,8 +11,10 @@ import FavoriteList from '../components/FavoriteList'
 export default function FavoritePage() {
   const navigate = useNavigate()
   const [searchValue, setSearchValue] = useState(""); 
+  
   const {
     state: {
+      cart,
       mode,
       favorite: { favoriteItems },
     },
@@ -27,23 +30,55 @@ export default function FavoritePage() {
 
   return ( 
    <div>
-    <div className="d-flex flex-column align-items-center justify-content-center">
-    <div className="search">
+      <header>
+              <div className="Announcement">Бессплатная доставка при заказе на сумму выше 5000руб!</div>
+        <Navbar
+          className="d-flex flex-column align-items-stretch p-2 pb-0 mb-3"
+          expand="lg"
+          style={{
+            width: "100%",
+            backgroundColor:"black",
+            color:"white"
+          }}
+        > 
+
+          <div className="d-flex justify-content-between align-items-center">
+            <LinkContainer to="/" className="header-link">
+              <div>Домашняя</div>
+            </LinkContainer>
+            <LinkContainer to="/favorite" className="header-link">
+              <div>Избранные</div>
+            </LinkContainer> 
+            {/*
+           */} 
+             <div className="search">
 
       <input
         type="text"
-        placeholder="Поиск..."
-        style={{width:"280px", padding:"10px", backgroundColor:"transparent", border:"none", outline:"none"}}
+        placeholder="Найти..."
+        style={{width:"100%", backgroundColor:"transparent", border:"none", outline:"none"}}
         value={searchValue}
         onChange={submitHandler}
       /> 
-          <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg>
+      
       </div>
- 
-     </div>     
- 
+
+                                         <Link to="/cart" className="nav-link header-link p-0"style={{border:"none"}}>                                           <i className="fas fa-shopping-cart"></i>
+                                        
+                  {
+                 <span className="badge badge-warning" id="cartcount">
+                      {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+                    </span>
+                  }
+                                      
+                                   
+
+
+                </Link>
+                
+          </div>
+        </Navbar>
+      </header>
                <FavoriteList itemsFilter={itemsFilter}/>
      
 

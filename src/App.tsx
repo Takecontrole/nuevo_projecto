@@ -31,7 +31,8 @@ function App() {
   const {
     state: { cart },
     dispatch,
-  } = useContext(Store)
+  } = useContext(Store) 
+   const [category, setCategory] = useState(""); 
    const [searchValue, setSearchValue] = useState(""); 
  
   const submitHandler = (e: React.SyntheticEvent) => {
@@ -82,7 +83,7 @@ function App() {
             <LinkContainer to="/" className="header-link">
               <div>Домашняя</div>
             </LinkContainer>
-            <LinkContainer to="/" className="header-link">
+            <LinkContainer to="/favorite" className="header-link">
               <div>Избранные</div>
             </LinkContainer> 
             {/*
@@ -117,7 +118,7 @@ function App() {
       </header>
       
             <main className="mt-5">
-             <Carousel/>
+             <Carousel/> 
         <Container className="mt-5">
                 <HomePage searchValue={searchValue}  />
         </Container>

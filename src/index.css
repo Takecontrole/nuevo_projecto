@@ -16,10 +16,19 @@ height: 30px;
   font-size: 12px;
   font-weight: 500;
 }
-.TopImage {
-   background-image: url("../images/K8mRmGxq-Untitled-design-2022-01-31T122555.161-1200x675.jpg");
-   height: 70vh;
-} 
+.category-button{
+  background-color: black !important;
+  color:white !important;
+  border: none;
+  outline: none;
+  margin: 10px !important;
+}
+.category-button:hover{
+  background-color: #D2042D !important;
+  color: black !important;
+  border: none;
+  outline: none;
+}
 .search{
   background-color: whitesmoke;
   border: none;

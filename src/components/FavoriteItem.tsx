@@ -46,18 +46,18 @@ function FavoriteCard({ product }: { product: Product }) {
         </Link>
           <Card.Text>${product.price}</Card.Text> 
  <div className="d-flex justify-content-between"> 
-           <Button variant="dark"
+           <Button className="category-button" 
             onClick={() => addToCartHandler(convertProductToCartItem(product))}
           >
-            Добавить в корзину
+            B корзину
           </Button>
 
                     
                       <Button
                         onClick={() => removeItemHandler(product)}
-                        variant="primary"
+                        className="category-button" 
                       >
-                        <i className="fas fa-trash"></i>
+Удалить
                       </Button>
                    </div>
                   </div>
